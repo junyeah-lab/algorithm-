@@ -123,6 +123,14 @@ public class Lru {
             Node<K, V> node = doubleLinkedList.removeHead();
             keyNodeMap.remove(node.key);
         }
+//        获取最近一次操作的数据
+        public V getRecentUsed(){
+            if(keyNodeMap == null){
+                return null;
+            }
+            Node<K,V> node = doubleLinkedList.tail;
+            return node.value;
+        }
     }
 
     public static void main(String[] args) {
@@ -138,6 +146,7 @@ public class Lru {
         cach.set("fff","555");
         System.out.println("______________________");
         getCach(cach);
+        System.out.println(cach.getRecentUsed());
     }
 
     private static void getCach(MyCach<String, String> cach) {
